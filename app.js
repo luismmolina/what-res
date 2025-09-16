@@ -298,6 +298,8 @@ const VENUES = [
 /* ---------- Application ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   const ui = {
+    introScreen: document.getElementById('intro-screen'),
+    startButton: document.getElementById('start'),
     progressTrack: document.querySelector('.progress-track'),
     progressThumb: document.getElementById('progress-thumb'),
     legendStep: document.getElementById('legend-step'),
@@ -440,6 +442,33 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const actions = {
+    begin() {
+      if (!QUESTIONNAIRE.length) return;
+
+      state.stepIndex = 0;
+      state.responses = [];
+
+      if (ui.introScreen) {
+        ui.introScreen.classList.add('hidden');
+      }
+
+      ui.results.classList.add('hidden');
+      ui.results.classList.remove('entering');
+      ui.restart.classList.add('hidden');
+
+      ui.progressShell.classList.remove('hidden');
+      ui.questionCard.classList.remove('hidden', 'leaving', 'entering');
+
+      renderers.question(QUESTIONNAIRE[state.stepIndex]);
+      calculations.updateProgress();
+
+      ui.questionCard.classList.add('entering');
+      setTimeout(() => ui.questionCard.classList.remove('entering'), 220);
+
+      const firstOption = ui.options.querySelector('.option-btn');
+      if (firstOption) firstOption.focus();
+    },
+
     handleAnswer(option, btnEl) {
       const question = QUESTIONNAIRE[state.stepIndex];
       state.responses.push({ questionId: question.id, option });
@@ -475,6 +504,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     showResults() {
+      if (ui.introScreen) {
+        ui.introScreen.classList.add('hidden');
+      }
       const totals = calculations.selectionsTotals();
       const chips = calculations.topChips(totals);
       const matches = calculations.rankedVenues(totals);
@@ -492,14 +524,43 @@ document.addEventListener('DOMContentLoaded', () => {
       state.stepIndex = 0;
       state.responses = [];
       ui.results.classList.add('hidden');
+      ui.results.classList.remove('entering');
+      ui.results.innerHTML = '';
       ui.restart.classList.add('hidden');
-      ui.questionCard.classList.remove('hidden', 'leaving', 'entering');
-      ui.progressShell.classList.remove('hidden');
-      renderers.question(QUESTIONNAIRE[state.stepIndex]);
-      calculations.updateProgress();
+
+      ui.questionCard.classList.add('hidden');
+      ui.questionCard.classList.remove('leaving', 'entering');
+
+      ui.progressShell.classList.add('hidden');
+      ui.progressThumb.style.width = '0%';
+      ui.progressTrack.setAttribute('aria-valuenow', '0');
+
+      if (QUESTIONNAIRE.length) {
+        ui.legendStep.textContent = `Paso 1 de ${QUESTIONNAIRE.length}`;
+        ui.legendTag.textContent = QUESTIONNAIRE[0].tag;
+        ui.questionEyebrow.textContent = QUESTIONNAIRE[0].tag;
+      } else {
+        ui.legendStep.textContent = 'Sin pasos disponibles';
+        ui.legendTag.textContent = '';
+        ui.questionEyebrow.textContent = '';
+      }
+
+      ui.questionPrompt.textContent = 'Tu cuestionario inicia cuando presiones “Comenzar cuestionario”.';
+      ui.options.innerHTML = '';
+
+      if (ui.introScreen) {
+        ui.introScreen.classList.remove('hidden');
+      }
+
+      if (ui.startButton) {
+        ui.startButton.focus();
+      }
     }
   };
 
+  if (ui.startButton) {
+    ui.startButton.addEventListener('click', actions.begin);
+  }
   ui.restart.addEventListener('click', actions.reset);
 
   // Keyboard shortcuts: 1..9 selects option; Up/Down: move focus
@@ -528,6 +589,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  renderers.question(QUESTIONNAIRE[state.stepIndex]);
-  calculations.updateProgress();
+  actions.reset();
 });

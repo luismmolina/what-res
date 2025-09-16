@@ -11,25 +11,41 @@
 </head>
 <body>
   <main class="app" aria-live="polite">
-    <header class="hero">
-      <div class="brand">
-        <div class="brand-mark">MT</div>
-        <div class="brand-title">
-          <h1>Morelia Taste-Router</h1>
-          <span>Local Discovery Engine</span>
+    <section id="intro-screen" class="intro-screen" aria-labelledby="intro-title">
+      <header class="hero">
+        <div class="brand">
+          <div class="brand-mark">MT</div>
+          <div class="brand-title">
+            <h1>Morelia Taste-Router</h1>
+            <span>Local Discovery Engine</span>
+          </div>
         </div>
-      </div>
-      <div class="hero-copy">
-        <h2 class="hero-headline">Tu mesa ideal en 90 segundos.</h2>
-        <div class="hero-highlights">
-          <span class="hero-pill">Ambiente perfecto</span>
-          <span class="hero-pill">Abiertos hoy</span>
-          <span class="hero-pill">Listo en 6 toques</span>
+        <div class="hero-copy">
+          <h2 id="intro-title" class="hero-headline">Tu mesa ideal en 90 segundos.</h2>
+          <div class="hero-highlights">
+            <span class="hero-pill">Ambiente perfecto</span>
+            <span class="hero-pill">Abiertos hoy</span>
+            <span class="hero-pill">Listo en 6 toques</span>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <section class="progress-shell" aria-live="polite">
+      <div class="intro-body">
+        <p>Descubre los lugares de Morelia que encajan con tu plan de hoy. Te hacemos un breve cuestionario y te entregamos recomendaciones listas para reservar o visitar.</p>
+        <ul class="intro-list">
+          <li>Personalizamos tu ruta con 6 preguntas claras.</li>
+          <li>Te contamos por qué cada lugar es un match contigo.</li>
+          <li>Accede directo a Maps o agenda por WhatsApp.</li>
+        </ul>
+      </div>
+
+      <div class="intro-actions">
+        <button id="start" class="intro-start" type="button">Comenzar cuestionario</button>
+        <span class="intro-hint">Son 6 preguntas y tardas menos de dos minutos.</span>
+      </div>
+    </section>
+
+    <section class="progress-shell hidden" aria-live="polite">
       <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <span id="progress-thumb" class="progress-thumb"></span>
       </div>
@@ -39,7 +55,7 @@
       </div>
     </section>
 
-    <section id="question-card" class="question-card" aria-labelledby="question-prompt">
+    <section id="question-card" class="question-card hidden" aria-labelledby="question-prompt">
       <p id="question-eyebrow" class="question-eyebrow">Intención</p>
       <h2 id="question-prompt" class="question-prompt">Cargando…</h2>
       <div id="options" class="options"></div>
