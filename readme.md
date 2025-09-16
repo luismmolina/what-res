@@ -29,3 +29,7 @@ I would be interested in paying for the site, as a restaurant owner, if I saw it
 We could leverage the fact that many places don't even track where costumers come from.
 
 I have decided that the price of the suscription will be of $890 and we will add anothe option at $1290 where they can see additional metrics, for example, what costumers are looking in there domain. For example if they sell tacos, do tacos with beer is a popular combiantiom, what about tacos and kids games. So they can see what are the most popular combinations.
+
+We need to be short in the amount of questions, probably only 5. Also the UI and UX needs to be super clear so the user doesnt have doubt about what needs to be done.
+
+Also is important to layout the questions in a way that we know a lot more from the first questions, maybe one restaurant would be the best fit even with less questions.
