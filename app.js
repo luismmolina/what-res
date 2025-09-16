@@ -298,6 +298,7 @@ const VENUES = [
 /* ---------- Application ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   const ui = {
+    app: document.querySelector('.app'),
     introScreen: document.getElementById('intro-screen'),
     startButton: document.getElementById('start'),
     progressTrack: document.querySelector('.progress-track'),
@@ -448,6 +449,11 @@ document.addEventListener('DOMContentLoaded', () => {
       state.stepIndex = 0;
       state.responses = [];
 
+      if (ui.app) {
+        ui.app.classList.remove('results-active');
+      }
+      document.body.classList.remove('results-mode');
+
       if (ui.introScreen) {
         ui.introScreen.classList.add('hidden');
       }
@@ -518,6 +524,11 @@ document.addEventListener('DOMContentLoaded', () => {
       ui.results.classList.add('entering');
       setTimeout(() => ui.results.classList.remove('entering'), 260);
       ui.restart.classList.remove('hidden');
+
+      if (ui.app) {
+        ui.app.classList.add('results-active');
+      }
+      document.body.classList.add('results-mode');
     },
 
     reset() {
@@ -555,6 +566,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (ui.startButton) {
         ui.startButton.focus();
       }
+
+      if (ui.app) {
+        ui.app.classList.remove('results-active');
+      }
+      document.body.classList.remove('results-mode');
     }
   };
 

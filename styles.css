@@ -28,16 +28,26 @@
 
 body {
   margin: 0;
-  min-height: 100dvh;
+  --pad-block: clamp(12px, 3.5vh, 32px);
+  --pad-block: clamp(12px, 3.5dvh, 32px);
+  --pad-inline: clamp(12px, 6vw, 24px);
+  min-height: calc(100vh - var(--pad-block) * 2);
+  min-height: calc(100dvh - var(--pad-block) * 2);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 24px 12px 36px;
+  align-items: stretch;
+  padding-block: var(--pad-block);
+  padding-inline: var(--pad-inline);
   background: radial-gradient(circle at top, rgba(245, 158, 11, 0.28), transparent 55%),
               radial-gradient(circle at 78% 18%, rgba(248, 113, 113, 0.25), transparent 45%),
               var(--bg-dark);
   position: relative;
   overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+body.results-mode {
+  overflow-y: auto;
 }
 
 body::before,
@@ -76,20 +86,33 @@ body::after {
   padding: 24px 20px 32px;
   box-shadow: 0 45px 120px rgba(15, 6, 2, 0.68);
   backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
+
+.app.results-active {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 
 .intro-screen {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: clamp(18px, 4vh, 28px);
   padding-bottom: 8px;
+  flex: 1;
+  min-height: 0;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .brand {
@@ -179,6 +202,8 @@ body::after {
   flex-direction: column;
   gap: 14px;
   line-height: 1.5;
+  flex: 1;
+  min-height: 0;
 }
 
 .intro-body p {
@@ -202,6 +227,7 @@ body::after {
   flex-direction: column;
   gap: 12px;
   align-items: stretch;
+  margin-top: auto;
 }
 
 .intro-start {
@@ -238,6 +264,7 @@ body::after {
 /* Progress */
 .progress-shell {
   margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
 .progress-track {
@@ -277,6 +304,8 @@ body::after {
   flex-direction: column;
   gap: 20px;
   box-shadow: 0 25px 65px rgba(22, 8, 3, 0.5);
+  flex: 1;
+  min-height: 0;
 }
 
 .question-eyebrow {
@@ -295,9 +324,11 @@ body::after {
 }
 
 .options {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 16px;
+  align-content: start;
+  flex: 1;
+  min-height: 0;
 }
 
 .option-btn {
@@ -574,16 +605,26 @@ body::after {
 /* Responsive tweaks */
 @media (max-width: 480px) {
   body {
-    padding: 20px 10px 28px;
+    --pad-block: clamp(12px, 5vh, 28px);
+    --pad-block: clamp(12px, 5dvh, 28px);
+    --pad-inline: clamp(12px, 8vw, 20px);
   }
 
   .app {
     border-radius: 22px;
-    padding: 20px 18px 28px;
+    padding: 20px 18px 26px;
+  }
+
+  .intro-screen {
+    gap: clamp(16px, 4vh, 22px);
+  }
+
+  .hero {
+    gap: 8px;
   }
 
   .hero-headline {
-    font-size: 1.28rem;
+    font-size: 1.24rem;
   }
 
   .hero-highlights {
@@ -595,27 +636,121 @@ body::after {
     font-size: 0.72rem;
   }
 
+  .intro-body {
+    padding: 18px 18px 20px;
+    gap: 12px;
+  }
+
+  .intro-body p {
+    font-size: 0.94rem;
+  }
+
+  .intro-list {
+    gap: 6px;
+    font-size: 0.84rem;
+  }
+
+  .intro-actions {
+    gap: 10px;
+  }
+
+  .intro-start {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+
+  .intro-hint {
+    font-size: 0.8rem;
+  }
+
+  .progress-shell {
+    margin-bottom: 16px;
+  }
+
   .question-card {
-    padding: 22px;
+    padding: 20px 18px 22px;
+    gap: 16px;
   }
 
   .question-prompt {
-    font-size: 1.35rem;
+    font-size: 1.32rem;
+  }
+
+  .options {
+    gap: 14px;
   }
 
   .option-btn {
-    padding: 16px 18px;
-    font-size: 0.98rem;
+    padding: 15px 16px;
+    font-size: 0.96rem;
   }
 
   .option-btn span {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
 
   .cta-group a {
     flex: 1 1 120px;
     padding: 12px 16px;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-height: 740px) {
+  body {
+    --pad-block: clamp(12px, 3vh, 24px);
+    --pad-block: clamp(12px, 3dvh, 24px);
+  }
+
+  .app {
+    padding: 20px 18px 24px;
+  }
+
+  .intro-screen {
+    gap: clamp(14px, 3.5vh, 22px);
+  }
+
+  .hero-headline {
+    font-size: 1.22rem;
+  }
+
+  .intro-body {
+    padding: 16px 16px 18px;
+  }
+
+  .intro-body p {
+    font-size: 0.92rem;
+  }
+
+  .intro-list {
+    font-size: 0.82rem;
+  }
+
+  .intro-start {
+    padding: 13px 18px;
+    font-size: 0.98rem;
+  }
+
+  .progress-shell {
+    margin-bottom: 14px;
+  }
+
+  .question-card {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .question-prompt {
+    font-size: 1.28rem;
+  }
+
+  .option-btn {
+    padding: 14px 16px;
+    font-size: 0.94rem;
+  }
+
+  .option-btn span {
+    font-size: 0.78rem;
   }
 }
 
