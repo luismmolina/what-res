@@ -9,13 +9,17 @@ const QUESTIONNAIRE = [
         id: 'novedad',
         label: 'Sorpréndeme con algo distinto',
         helper: 'Propuestas nuevas, chefs creativos',
-        tags: ['novedad', 'curioso']
+        tags: ['novedad', 'curioso'],
+        image: 'https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Platillo creativo con presentación moderna'
       },
       {
         id: 'seguro',
         label: 'Quiero algo que ya sé que funciona',
         helper: 'Favoritos probados, cero sorpresas',
-        tags: ['seguro', 'comfort']
+        tags: ['seguro', 'comfort'],
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Mesa con platos reconfortantes compartidos'
       }
     ]
   },
@@ -28,13 +32,17 @@ const QUESTIONNAIRE = [
         id: 'pareja',
         label: 'Solo o con una persona',
         helper: 'Plan íntimo, conversación tranquila',
-        tags: ['pareja', 'tranquilo']
+        tags: ['pareja', 'tranquilo'],
+        image: 'https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Brindis íntimo para dos personas'
       },
       {
         id: 'grupo',
         label: 'Con familia o amigos',
         helper: 'Necesitamos mesa amplia',
-        tags: ['grupo']
+        tags: ['grupo'],
+        image: 'https://images.unsplash.com/photo-1543353071-087092ec393e?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Mesa larga con grupo de amigos compartiendo comida'
       }
     ]
   },
@@ -47,13 +55,17 @@ const QUESTIONNAIRE = [
         id: 'tranquilo',
         label: 'Calmado para platicar',
         helper: 'Música suave, espacio cómodo',
-        tags: ['tranquilo', 'quedarse']
+        tags: ['tranquilo', 'quedarse'],
+        image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Mesa tranquila junto a ventana con café y flores'
       },
       {
         id: 'animado',
         label: 'Con energía y música',
         helper: 'Ambiente vivo, playlist arriba',
-        tags: ['animado']
+        tags: ['animado'],
+        image: 'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Bar animado con luces cálidas y gente socializando'
       }
     ]
   },
@@ -66,13 +78,17 @@ const QUESTIONNAIRE = [
         id: 'economico',
         label: 'Cuidar el bolsillo',
         helper: 'Promedio menor a 220 MXN',
-        tags: ['economico']
+        tags: ['economico'],
+        image: 'https://images.unsplash.com/photo-1546069901-d5bfd8403a7d?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Comida callejera colorida servida rápidamente'
       },
       {
         id: 'premium',
         label: 'Me doy un gusto',
         helper: 'Estoy listo para invertir más',
-        tags: ['premium']
+        tags: ['premium'],
+        image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Mesa elegante con servicio de alta gama'
       }
     ]
   },
@@ -85,13 +101,17 @@ const QUESTIONNAIRE = [
         id: 'comfort',
         label: 'Sabores reconfortantes',
         helper: 'Tacos, caldos, parrilla',
-        tags: ['comfort', 'seguro']
+        tags: ['comfort', 'seguro'],
+        image: 'https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Comida reconfortante servida en platos abundantes'
       },
       {
         id: 'creativo',
         label: 'Algo diferente o creativo',
         helper: 'Sushi, ramen, fusiones',
-        tags: ['novedad', 'curioso']
+        tags: ['novedad', 'curioso'],
+        image: 'https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Plato creativo con ingredientes frescos y coloridos'
       }
     ]
   },
@@ -104,13 +124,17 @@ const QUESTIONNAIRE = [
         id: 'practico',
         label: 'Salir rápido o estacionar fácil',
         helper: 'Servicio ágil, acceso sencillo',
-        tags: ['rapido', 'estacionamiento']
+        tags: ['rapido', 'estacionamiento'],
+        image: 'https://images.unsplash.com/photo-1523473827534-86c5ad6cb394?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Comida para llevar lista para salir rápido'
       },
       {
         id: 'relajado',
         label: 'Quedarme un buen rato',
         helper: 'Sillones, sobremesa larga',
-        tags: ['quedarse']
+        tags: ['quedarse'],
+        image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=240&q=80',
+        imageAlt: 'Personas relajadas conversando en sillones amplios'
       }
     ]
   }
@@ -156,6 +180,10 @@ const VENUES = [
     descripcion: 'Fondita contemporánea con caldos michoacanos y guisos reconfortantes servidos con un toque moderno.',
     precioEstimado: 'Cuenta promedio: 180 MXN por persona',
     horario: 'Mar-Dom 13:00-22:00',
+    image: {
+      src: 'https://images.unsplash.com/photo-1604908177522-4026dc32fdc9?auto=format&fit=crop&w=900&q=80',
+      alt: 'Cazo de caldo michoacano sobre mesa rústica'
+    },
     tags: { seguro: 3, comfort: 3, economico: 2, grupo: 2, tranquilo: 2, rapido: 2 },
     destacados: [
       'Caldo de corunda con setas y nixtamal propio',
@@ -174,6 +202,10 @@ const VENUES = [
     descripcion: 'Terraza con mixología de autor, música en vivo ligera y menú de platillos para compartir.',
     precioEstimado: 'Cuenta promedio: 340 MXN por persona',
     horario: 'Mié-Dom 18:00-01:00',
+    image: {
+      src: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=80',
+      alt: 'Coctel de autor en terraza nocturna con luces'
+    },
     tags: { novedad: 2, premium: 3, animado: 3, pareja: 2, quedarse: 2 },
     destacados: [
       'Cócteles con destilados michoacanos',
@@ -192,6 +224,10 @@ const VENUES = [
     descripcion: 'Barra de ramen y baos con productos locales, menús colaborativos y cocina a la vista.',
     precioEstimado: 'Cuenta promedio: 260 MXN por persona',
     horario: 'Lun-Sáb 14:00-23:00',
+    image: {
+      src: 'https://images.unsplash.com/photo-1585238342028-4c07e92d237c?auto=format&fit=crop&w=900&q=80',
+      alt: 'Tazón de ramen con palillos descansando al borde'
+    },
     tags: { novedad: 3, curioso: 3, premium: 2, pareja: 2, animado: 1 },
     destacados: [
       'Caldo de hueso rostizado 18 horas',
@@ -210,6 +246,10 @@ const VENUES = [
     descripcion: 'Azotea compartida con estaciones de comida urbana, cerveza artesanal y mesas comunitarias.',
     precioEstimado: 'Cuenta promedio: 210 MXN por persona',
     horario: 'Jue-Dom 15:00-00:00',
+    image: {
+      src: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=900&q=80',
+      alt: 'Estaciones de comida urbana en azotea iluminada'
+    },
     tags: { grupo: 3, animado: 3, novedad: 2, economico: 2, rapido: 1 },
     destacados: [
       'Once proyectos de cocina rotativa',
@@ -228,6 +268,10 @@ const VENUES = [
     descripcion: 'Asador campestre con cortes añejados, barra de ensaladas y terraza rodeada de pinos.',
     precioEstimado: 'Cuenta promedio: 380 MXN por persona',
     horario: 'Vie-Dom 13:00-23:00',
+    image: {
+      src: 'https://images.unsplash.com/photo-1553163147-622ab57e7c8e?auto=format&fit=crop&w=900&q=80',
+      alt: 'Cortes de carne a la parrilla sobre tabla de madera'
+    },
     tags: { seguro: 3, premium: 2, grupo: 2, estacionamiento: 3, comfort: 2, quedarse: 2 },
     destacados: [
       'Cortes dry-aged de 28 días',
@@ -246,6 +290,10 @@ const VENUES = [
     descripcion: 'Taquería nocturna con trompo al carbón, salsas de temporada y servicio exprés.',
     precioEstimado: 'Cuenta promedio: 120 MXN por persona',
     horario: 'Todos los días 19:00-03:00',
+    image: {
+      src: 'https://images.unsplash.com/photo-1601924582971-b564cfe08c07?auto=format&fit=crop&w=900&q=80',
+      alt: 'Tacos al pastor servidos con piña fresca'
+    },
     tags: { economico: 3, rapido: 3, grupo: 2, animado: 2, comfort: 1 },
     destacados: [
       'Pastor al cuádruple sellado',
@@ -264,6 +312,10 @@ const VENUES = [
     descripcion: 'Café de especialidad y vinito natural en casona del siglo XIX con rincones íntimos.',
     precioEstimado: 'Cuenta promedio: 230 MXN por persona',
     horario: 'Mar-Dom 09:00-22:00',
+    image: {
+      src: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80',
+      alt: 'Cafetería acogedora con luz cálida y libros'
+    },
     tags: { pareja: 3, tranquilo: 3, quedarse: 3, premium: 2, novedad: 1 },
     destacados: [
       'Carta de cafés de origen michoacano',
@@ -282,6 +334,10 @@ const VENUES = [
     descripcion: 'Marisquería fresca con ceviches creativos, barra de aguachiles y opciones saludables.',
     precioEstimado: 'Cuenta promedio: 290 MXN por persona',
     horario: 'Mié-Lun 12:00-21:00',
+    image: {
+      src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80',
+      alt: 'Aguachile verde con camarones y rodajas de limón'
+    },
     tags: { novedad: 2, grupo: 2, premium: 2, tranquilo: 1, estacionamiento: 2, curioso: 1 },
     destacados: [
       'Aguachile verde con cítricos locales',
@@ -329,7 +385,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const button = document.createElement('button');
         button.className = 'option-btn';
         button.type = 'button';
-        button.innerHTML = `<div><strong>${option.label}</strong><span>${option.helper}</span></div><div class="option-chevron">›</div>`;
+        const mediaHtml = option.image
+          ? `<div class="option-media"><img src="${option.image}" alt="${option.imageAlt || ''}" loading="lazy"></div>`
+          : '';
+        button.innerHTML = `
+          ${mediaHtml}
+          <div class="option-copy">
+            <strong>${option.label}</strong>
+            <span>${option.helper}</span>
+          </div>
+          <div class="option-chevron">›</div>
+        `.trim();
         button.addEventListener('click', (e) => actions.handleAnswer(option, e.currentTarget));
         ui.options.appendChild(button);
       });
@@ -354,26 +420,37 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         html += '<div class="venue-list">';
         matches.slice(0, 3).forEach((venue, index) => {
-          const reasonList = venue.reasons
-            .map((reason) => `<li>${reason.label}</li>`)
-            .join('');
+          const reasonTags = Array.isArray(venue.reasons) && venue.reasons.length
+            ? `<div class="reason-tags">${venue.reasons
+                .map((reason) => `<span class="reason-chip">${reason.label}</span>`)
+                .join('')}</div>`
+            : '';
 
-          const highlights = venue.destacados
-            .map((item) => `<li>${item}</li>`)
-            .join('');
+          const highlights = Array.isArray(venue.destacados) && venue.destacados.length
+            ? `<ul class="highlights">${venue.destacados.map((item) => `<li>${item}</li>`).join('')}</ul>`
+            : '';
+
+          const cover = venue.image
+            ? `<figure class="venue-media"><img src="${venue.image.src}" alt="${venue.image.alt}" loading="lazy"></figure>`
+            : '';
 
           html += `
             <article class="venue-card">
-              <div class="venue-rank">#${index + 1} · Match ideal</div>
-              <h3>${venue.nombre}</h3>
-              <p class="venue-meta">${venue.barrio} · ${venue.horario}</p>
-              <p class="venue-desc">${venue.descripcion}</p>
-              <p class="venue-meta">${venue.precioEstimado}</p>
-              ${reasonList ? `<ul class="reasons">${reasonList}</ul>` : ''}
-              ${highlights ? `<ul class="highlights">${highlights}</ul>` : ''}
-              <div class="cta-group">
-                <a class="cta-primary" href="${venue.enlaces.maps}" target="_blank" rel="noopener">Abrir en Maps</a>
-                <a class="cta-secondary" href="${venue.enlaces.whatsapp}" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+              ${cover}
+              <div class="venue-info">
+                <div class="venue-head">
+                  <div class="venue-rank">#${index + 1} · Match ideal</div>
+                  <h3>${venue.nombre}</h3>
+                  <p class="venue-meta">${venue.barrio} · ${venue.horario}</p>
+                </div>
+                <p class="venue-desc">${venue.descripcion}</p>
+                <p class="venue-meta">${venue.precioEstimado}</p>
+                ${reasonTags}
+                ${highlights}
+                <div class="cta-group">
+                  <a class="cta-primary" href="${venue.enlaces.maps}" target="_blank" rel="noopener">Abrir en Maps</a>
+                  <a class="cta-secondary" href="${venue.enlaces.whatsapp}" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+                </div>
               </div>
             </article>
           `;
