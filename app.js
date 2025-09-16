@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.className = 'option-btn';
         button.type = 'button';
         button.innerHTML = `<div><strong>${option.label}</strong><span>${option.helper}</span></div><div class="option-chevron">›</div>`;
-        button.addEventListener('click', () => actions.handleAnswer(option));
+        button.addEventListener('click', (e) => actions.handleAnswer(option, e.currentTarget));
         ui.options.appendChild(button);
       });
     },
@@ -390,6 +390,13 @@ document.addEventListener('DOMContentLoaded', () => {
       ui.progressTrack.setAttribute('aria-valuenow', percent.toFixed(0));
       const humanStep = Math.min(state.stepIndex + 1, QUESTIONNAIRE.length);
       ui.legendStep.textContent = `Paso ${humanStep} de ${QUESTIONNAIRE.length}`;
+      // Micro-interaction: pulse progress and flip legend text
+      ui.progressThumb.classList.remove('pulse');
+      void ui.progressThumb.offsetWidth; // reflow to restart animation
+      ui.progressThumb.classList.add('pulse');
+      ui.legendStep.classList.remove('flip');
+      void ui.legendStep.offsetWidth;
+      ui.legendStep.classList.add('flip');
     },
 
     selectionsTotals() {
@@ -433,19 +440,38 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const actions = {
-    handleAnswer(option) {
+    handleAnswer(option, btnEl) {
       const question = QUESTIONNAIRE[state.stepIndex];
       state.responses.push({ questionId: question.id, option });
 
-      if (state.stepIndex < QUESTIONNAIRE.length - 1) {
-        state.stepIndex += 1;
-        renderers.question(QUESTIONNAIRE[state.stepIndex]);
-        calculations.updateProgress();
-      } else {
-        state.stepIndex += 1;
-        calculations.updateProgress();
-        actions.showResults();
+      // Selection feedback on the pressed option
+      if (btnEl) {
+        try {
+          btnEl.classList.add('selected');
+          const chev = btnEl.querySelector('.option-chevron');
+          if (chev) chev.textContent = '✓';
+        } catch (_) {}
       }
+
+      // Animate current card out, then advance
+      ui.questionCard.classList.add('leaving');
+
+      const goNext = () => {
+        if (state.stepIndex < QUESTIONNAIRE.length - 1) {
+          state.stepIndex += 1;
+          renderers.question(QUESTIONNAIRE[state.stepIndex]);
+          calculations.updateProgress();
+          ui.questionCard.classList.remove('leaving');
+          ui.questionCard.classList.add('entering');
+          setTimeout(() => ui.questionCard.classList.remove('entering'), 220);
+        } else {
+          state.stepIndex += 1;
+          calculations.updateProgress();
+          actions.showResults();
+        }
+      };
+
+      setTimeout(goNext, 160);
     },
 
     showResults() {
@@ -457,6 +483,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ui.progressShell.classList.add('hidden');
       renderers.results(matches, chips);
       ui.results.classList.remove('hidden');
+      ui.results.classList.add('entering');
+      setTimeout(() => ui.results.classList.remove('entering'), 260);
       ui.restart.classList.remove('hidden');
     },
 
@@ -473,6 +501,32 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   ui.restart.addEventListener('click', actions.reset);
+
+  // Keyboard shortcuts: 1..9 selects option; Up/Down: move focus
+  document.addEventListener('keydown', (e) => {
+    const buttons = Array.from(ui.options.querySelectorAll('.option-btn'));
+    if (!buttons.length) return;
+
+    if (/^[1-9]$/.test(e.key)) {
+      const idx = parseInt(e.key, 10) - 1;
+      if (buttons[idx]) {
+        buttons[idx].click();
+        e.preventDefault();
+      }
+      return;
+    }
+
+    const currentIndex = buttons.findIndex((b) => b === document.activeElement);
+    if (e.key === 'ArrowDown') {
+      const next = buttons[(currentIndex + 1) % buttons.length];
+      next.focus();
+      e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+      const prev = buttons[(currentIndex - 1 + buttons.length) % buttons.length];
+      prev.focus();
+      e.preventDefault();
+    }
+  });
 
   renderers.question(QUESTIONNAIRE[state.stepIndex]);
   calculations.updateProgress();
