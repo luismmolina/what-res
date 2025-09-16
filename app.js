@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state.responses = [];
       ui.results.classList.add('hidden');
       ui.restart.classList.add('hidden');
-      ui.questionCard.classList.remove('hidden');
+      ui.questionCard.classList.remove('hidden', 'leaving', 'entering');
       ui.progressShell.classList.remove('hidden');
       renderers.question(QUESTIONNAIRE[state.stepIndex]);
       calculations.updateProgress();
