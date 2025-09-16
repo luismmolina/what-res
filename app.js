@@ -4,18 +4,30 @@ const QUESTIONNAIRE = [
     id: 'intencion',
     prompt: '¿Qué buscas hoy?',
     tag: 'Intención',
+    visual: {
+      src: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=80',
+      alt: 'Mesa servida con platillos compartidos y manos brindando.'
+    },
     options: [
       {
         id: 'novedad',
         label: 'Sorpréndeme con algo distinto',
         helper: 'Propuestas nuevas, chefs creativos',
-        tags: ['novedad', 'curioso']
+        tags: ['novedad', 'curioso'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=400&q=80',
+          alt: 'Plato creativo con presentación colorida.'
+        }
       },
       {
         id: 'seguro',
         label: 'Quiero algo que ya sé que funciona',
         helper: 'Favoritos probados, cero sorpresas',
-        tags: ['seguro', 'comfort']
+        tags: ['seguro', 'comfort'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
+          alt: 'Mesa con platillos clásicos listos para compartir.'
+        }
       }
     ]
   },
@@ -23,18 +35,30 @@ const QUESTIONNAIRE = [
     id: 'compania',
     prompt: '¿Con quién vienes?',
     tag: 'Compañía',
+    visual: {
+      src: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80',
+      alt: 'Grupo de amigos brindando en una terraza al atardecer.'
+    },
     options: [
       {
         id: 'pareja',
         label: 'Solo o con una persona',
         helper: 'Plan íntimo, conversación tranquila',
-        tags: ['pareja', 'tranquilo']
+        tags: ['pareja', 'tranquilo'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=400&q=80',
+          alt: 'Pareja brindando en un restaurante acogedor.'
+        }
       },
       {
         id: 'grupo',
         label: 'Con familia o amigos',
         helper: 'Necesitamos mesa amplia',
-        tags: ['grupo']
+        tags: ['grupo'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80',
+          alt: 'Mesa larga con varias personas compartiendo comida.'
+        }
       }
     ]
   },
@@ -42,18 +66,30 @@ const QUESTIONNAIRE = [
     id: 'ambiente',
     prompt: 'Elige el ambiente.',
     tag: 'Ambiente',
+    visual: {
+      src: 'https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=900&q=80',
+      alt: 'Interior cálido de restaurante con iluminación suave.'
+    },
     options: [
       {
         id: 'tranquilo',
         label: 'Calmado para platicar',
         helper: 'Música suave, espacio cómodo',
-        tags: ['tranquilo', 'quedarse']
+        tags: ['tranquilo', 'quedarse'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=400&q=80',
+          alt: 'Mesa junto a una ventana con luz cálida y libros.'
+        }
       },
       {
         id: 'animado',
         label: 'Con energía y música',
         helper: 'Ambiente vivo, playlist arriba',
-        tags: ['animado']
+        tags: ['animado'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=400&q=80',
+          alt: 'Bar con luces de neón y personas disfrutando.'
+        }
       }
     ]
   },
@@ -61,18 +97,30 @@ const QUESTIONNAIRE = [
     id: 'presupuesto',
     prompt: '¿Cómo quieres gastar?',
     tag: 'Presupuesto',
+    visual: {
+      src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80',
+      alt: 'Mesa desde arriba con distintos platillos para compartir.'
+    },
     options: [
       {
         id: 'economico',
         label: 'Cuidar el bolsillo',
         helper: 'Promedio menor a 220 MXN',
-        tags: ['economico']
+        tags: ['economico'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?auto=format&fit=crop&w=400&q=80',
+          alt: 'Orden de tacos callejeros servidos con limón.'
+        }
       },
       {
         id: 'premium',
         label: 'Me doy un gusto',
         helper: 'Estoy listo para invertir más',
-        tags: ['premium']
+        tags: ['premium'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1496412705862-e0088f16f791?auto=format&fit=crop&w=400&q=80',
+          alt: 'Plato gourmet con presentación elegante.'
+        }
       }
     ]
   },
@@ -80,18 +128,30 @@ const QUESTIONNAIRE = [
     id: 'antojo',
     prompt: '¿Qué se te antoja más?',
     tag: 'Antojo',
+    visual: {
+      src: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=80',
+      alt: 'Plato vibrante con ingredientes frescos y coloridos.'
+    },
     options: [
       {
         id: 'comfort',
         label: 'Sabores reconfortantes',
         helper: 'Tacos, caldos, parrilla',
-        tags: ['comfort', 'seguro']
+        tags: ['comfort', 'seguro'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1612872087720-bb876e3da8bb?auto=format&fit=crop&w=400&q=80',
+          alt: 'Tazón de caldo reconfortante con chiles y hierbas.'
+        }
       },
       {
         id: 'creativo',
         label: 'Algo diferente o creativo',
         helper: 'Sushi, ramen, fusiones',
-        tags: ['novedad', 'curioso']
+        tags: ['novedad', 'curioso'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=400&q=80',
+          alt: 'Tabla con bocados creativos y coloridos.'
+        }
       }
     ]
   },
@@ -99,18 +159,30 @@ const QUESTIONNAIRE = [
     id: 'logistica',
     prompt: '¿Qué necesitas para hoy?',
     tag: 'Logística',
+    visual: {
+      src: 'https://images.unsplash.com/photo-1542831371-d531d36971e6?auto=format&fit=crop&w=900&q=80',
+      alt: 'Barista entregando bebidas en una barra moderna.'
+    },
     options: [
       {
         id: 'practico',
         label: 'Salir rápido o estacionar fácil',
         helper: 'Servicio ágil, acceso sencillo',
-        tags: ['rapido', 'estacionamiento']
+        tags: ['rapido', 'estacionamiento'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1522172588553-1b7c85c3e795?auto=format&fit=crop&w=400&q=80',
+          alt: 'Bolsa de comida para llevar lista sobre un mostrador.'
+        }
       },
       {
         id: 'relajado',
         label: 'Quedarme un buen rato',
         helper: 'Sillones, sobremesa larga',
-        tags: ['quedarse']
+        tags: ['quedarse'],
+        image: {
+          src: 'https://images.unsplash.com/photo-1528131402287-5fdf329d3727?auto=format&fit=crop&w=400&q=80',
+          alt: 'Sala acogedora con sillones y luz cálida.'
+        }
       }
     ]
   }
@@ -154,6 +226,10 @@ const VENUES = [
     nombre: 'Casa Caldito Moderna',
     barrio: 'Centro Histórico',
     descripcion: 'Fondita contemporánea con caldos michoacanos y guisos reconfortantes servidos con un toque moderno.',
+    imagen: {
+      src: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80',
+      alt: 'Tazón de caldo servido en mesa rústica con tortillas.'
+    },
     precioEstimado: 'Cuenta promedio: 180 MXN por persona',
     horario: 'Mar-Dom 13:00-22:00',
     tags: { seguro: 3, comfort: 3, economico: 2, grupo: 2, tranquilo: 2, rapido: 2 },
@@ -172,6 +248,10 @@ const VENUES = [
     nombre: 'Terraza Brisa Nocturna',
     barrio: 'Chapultepec',
     descripcion: 'Terraza con mixología de autor, música en vivo ligera y menú de platillos para compartir.',
+    imagen: {
+      src: 'https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?auto=format&fit=crop&w=800&q=80',
+      alt: 'Terraza nocturna con iluminación cálida y cocteles.'
+    },
     precioEstimado: 'Cuenta promedio: 340 MXN por persona',
     horario: 'Mié-Dom 18:00-01:00',
     tags: { novedad: 2, premium: 3, animado: 3, pareja: 2, quedarse: 2 },
@@ -190,6 +270,10 @@ const VENUES = [
     nombre: 'Neko Ramen Lab',
     barrio: 'Nueva España',
     descripcion: 'Barra de ramen y baos con productos locales, menús colaborativos y cocina a la vista.',
+    imagen: {
+      src: 'https://images.unsplash.com/photo-1604908176997-2ff98380a104?auto=format&fit=crop&w=800&q=80',
+      alt: 'Tazones de ramen con palillos en barra de madera.'
+    },
     precioEstimado: 'Cuenta promedio: 260 MXN por persona',
     horario: 'Lun-Sáb 14:00-23:00',
     tags: { novedad: 3, curioso: 3, premium: 2, pareja: 2, animado: 1 },
@@ -208,6 +292,10 @@ const VENUES = [
     nombre: 'Mercado Social Azotea',
     barrio: 'Centro Sur',
     descripcion: 'Azotea compartida con estaciones de comida urbana, cerveza artesanal y mesas comunitarias.',
+    imagen: {
+      src: 'https://images.unsplash.com/photo-1523365280197-f1783db9fe62?auto=format&fit=crop&w=800&q=80',
+      alt: 'Mercado gastronómico al aire libre con luces y gente.'
+    },
     precioEstimado: 'Cuenta promedio: 210 MXN por persona',
     horario: 'Jue-Dom 15:00-00:00',
     tags: { grupo: 3, animado: 3, novedad: 2, economico: 2, rapido: 1 },
@@ -226,6 +314,10 @@ const VENUES = [
     nombre: 'Parrilla del Bosque',
     barrio: 'Tres Marías',
     descripcion: 'Asador campestre con cortes añejados, barra de ensaladas y terraza rodeada de pinos.',
+    imagen: {
+      src: 'https://images.unsplash.com/photo-1553163147-622ab57e7c72?auto=format&fit=crop&w=800&q=80',
+      alt: 'Parrilla al aire libre con cortes de carne asándose.'
+    },
     precioEstimado: 'Cuenta promedio: 380 MXN por persona',
     horario: 'Vie-Dom 13:00-23:00',
     tags: { seguro: 3, premium: 2, grupo: 2, estacionamiento: 3, comfort: 2, quedarse: 2 },
@@ -244,6 +336,10 @@ const VENUES = [
     nombre: 'Taquería Ruta 72',
     barrio: 'Chapultepec Sur',
     descripcion: 'Taquería nocturna con trompo al carbón, salsas de temporada y servicio exprés.',
+    imagen: {
+      src: 'https://images.unsplash.com/photo-1504542982118-59308b40fe0c?auto=format&fit=crop&w=800&q=80',
+      alt: 'Trompo de pastor girando frente a brasas.'
+    },
     precioEstimado: 'Cuenta promedio: 120 MXN por persona',
     horario: 'Todos los días 19:00-03:00',
     tags: { economico: 3, rapido: 3, grupo: 2, animado: 2, comfort: 1 },
@@ -262,6 +358,10 @@ const VENUES = [
     nombre: 'Café Luz y Sombra',
     barrio: 'Centro Histórico',
     descripcion: 'Café de especialidad y vinito natural en casona del siglo XIX con rincones íntimos.',
+    imagen: {
+      src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80',
+      alt: 'Cafetería con barra de especialidad y luz tenue.'
+    },
     precioEstimado: 'Cuenta promedio: 230 MXN por persona',
     horario: 'Mar-Dom 09:00-22:00',
     tags: { pareja: 3, tranquilo: 3, quedarse: 3, premium: 2, novedad: 1 },
@@ -280,6 +380,10 @@ const VENUES = [
     nombre: 'Mariscos La Ola Verde',
     barrio: 'Camelinas',
     descripcion: 'Marisquería fresca con ceviches creativos, barra de aguachiles y opciones saludables.',
+    imagen: {
+      src: 'https://images.unsplash.com/photo-1515007917921-1c1d4b7a1f89?auto=format&fit=crop&w=800&q=80',
+      alt: 'Plato de ceviche fresco con aguacate y hierbas.'
+    },
     precioEstimado: 'Cuenta promedio: 290 MXN por persona',
     horario: 'Mié-Lun 12:00-21:00',
     tags: { novedad: 2, grupo: 2, premium: 2, tranquilo: 1, estacionamiento: 2, curioso: 1 },
@@ -303,6 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
     legendStep: document.getElementById('legend-step'),
     legendTag: document.getElementById('legend-tag'),
     questionCard: document.getElementById('question-card'),
+    questionVisual: document.getElementById('question-visual'),
     questionPrompt: document.getElementById('question-prompt'),
     questionEyebrow: document.getElementById('question-eyebrow'),
     options: document.getElementById('options'),
@@ -318,6 +423,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const renderers = {
     question(question) {
+      if (question.visual) {
+        ui.questionVisual.innerHTML = `<img src="${question.visual.src}" alt="${question.visual.alt}" loading="lazy" />`;
+        ui.questionVisual.classList.remove('hidden');
+      } else {
+        ui.questionVisual.innerHTML = '';
+        ui.questionVisual.classList.add('hidden');
+      }
+
       ui.questionPrompt.textContent = question.prompt;
       ui.questionEyebrow.textContent = question.tag;
       ui.legendTag.textContent = question.tag;
@@ -327,7 +440,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const button = document.createElement('button');
         button.className = 'option-btn';
         button.type = 'button';
-        button.innerHTML = `<div><strong>${option.label}</strong><span>${option.helper}</span></div><div class="option-chevron">›</div>`;
+        const media = option.image
+          ? `<div class="option-media"><img src="${option.image.src}" alt="${option.image.alt}" loading="lazy" /></div>`
+          : '';
+        const copy = `<div class="option-copy"><strong>${option.label}</strong><span>${option.helper}</span></div>`;
+        const chevron = '<div class="option-chevron">›</div>';
+        button.innerHTML = [media, copy, chevron].filter(Boolean).join('');
         button.addEventListener('click', (e) => actions.handleAnswer(option, e.currentTarget));
         ui.options.appendChild(button);
       });
@@ -360,18 +478,25 @@ document.addEventListener('DOMContentLoaded', () => {
             .map((item) => `<li>${item}</li>`)
             .join('');
 
+          const media = venue.imagen
+            ? `<div class="venue-media"><img src="${venue.imagen.src}" alt="${venue.imagen.alt}" loading="lazy" /></div>`
+            : '';
+
           html += `
             <article class="venue-card">
-              <div class="venue-rank">#${index + 1} · Match ideal</div>
-              <h3>${venue.nombre}</h3>
-              <p class="venue-meta">${venue.barrio} · ${venue.horario}</p>
-              <p class="venue-desc">${venue.descripcion}</p>
-              <p class="venue-meta">${venue.precioEstimado}</p>
-              ${reasonList ? `<ul class="reasons">${reasonList}</ul>` : ''}
-              ${highlights ? `<ul class="highlights">${highlights}</ul>` : ''}
-              <div class="cta-group">
-                <a class="cta-primary" href="${venue.enlaces.maps}" target="_blank" rel="noopener">Abrir en Maps</a>
-                <a class="cta-secondary" href="${venue.enlaces.whatsapp}" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+              ${media}
+              <div class="venue-body">
+                <div class="venue-rank">#${index + 1} · Match ideal</div>
+                <h3>${venue.nombre}</h3>
+                <p class="venue-meta">${venue.barrio} · ${venue.horario}</p>
+                <p class="venue-desc">${venue.descripcion}</p>
+                <p class="venue-meta">${venue.precioEstimado}</p>
+                ${reasonList ? `<ul class="reasons">${reasonList}</ul>` : ''}
+                ${highlights ? `<ul class="highlights">${highlights}</ul>` : ''}
+                <div class="cta-group">
+                  <a class="cta-primary" href="${venue.enlaces.maps}" target="_blank" rel="noopener">Abrir en Maps</a>
+                  <a class="cta-secondary" href="${venue.enlaces.whatsapp}" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+                </div>
               </div>
             </article>
           `;
