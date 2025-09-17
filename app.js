@@ -374,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
     results: document.getElementById('results'),
     restart: document.getElementById('restart'),
     progressShell: document.querySelector('.progress-shell'),
-    howItWorks: document.querySelector('.how-it-works'),
     microProof: document.getElementById('micro-proof'),
     microProofCopy: document.querySelector('.micro-proof-copy')
   };
@@ -562,7 +561,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ui.restart.classList.add('hidden');
 
       ui.progressShell.classList.remove('hidden');
-      if (ui.howItWorks) ui.howItWorks.classList.add('hidden');
       ui.questionCard.classList.remove('hidden', 'leaving', 'entering');
 
       renderers.question(QUESTIONNAIRE[state.stepIndex]);
@@ -620,7 +618,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ui.questionCard.classList.add('hidden');
       ui.progressShell.classList.add('hidden');
-      if (ui.howItWorks) ui.howItWorks.classList.add('hidden');
       microProof.stop(true);
       renderers.results(matches);
       ui.results.classList.remove('hidden');
@@ -660,9 +657,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (ui.introScreen) {
         ui.introScreen.classList.remove('hidden');
-      }
-      if (ui.howItWorks) {
-        ui.howItWorks.classList.remove('hidden');
       }
 
       if (ui.startButton) {
