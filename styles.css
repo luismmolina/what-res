@@ -906,8 +906,18 @@ body::after {
   .brand-tag { display: none; }
   .hero-headline { font-size: 1.36rem; }
   .hero-subline { display: none; }
-  .hero-media { display: none; }
+  .hero-media { display: block; min-height: 168px; border-radius: 16px; }
   .intro-actions { margin-top: 10px; }
+
+
+
+  /* De-emphasize how-it-works on phones */
+  .how-it-works { margin-top: 16px; gap: 10px; }
+  .how-steps { gap: 10px; }
+  .how-step { padding: 10px 12px; gap: 10px; box-shadow: 0 10px 20px rgba(1, 19, 29, 0.28); background: rgba(2, 58, 85, 0.64); }
+  .how-step p { display: none; }
+  .how-step h3 { font-size: 0.94rem; }
+  .how-index { width: 32px; height: 32px; font-size: 0.68rem; }
 
 }
 
@@ -968,6 +978,10 @@ body::after {
     width: 48px;
     height: 48px;
   }
+
+
+  .hero-media { min-height: 150px; }
+
 }
 
 @media (min-width: 600px) {
