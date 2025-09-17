@@ -898,6 +898,17 @@ body::after {
   .how-step p {
     font-size: 0.84rem;
   }
+
+
+  /* Minimal hero on phones: hide media and extra copy; tighten spacing */
+  .intro-screen { gap: 16px; }
+  .hero { padding: 16px 14px; gap: 14px; }
+  .brand-tag { display: none; }
+  .hero-headline { font-size: 1.36rem; }
+  .hero-subline { display: none; }
+  .hero-media { display: none; }
+  .intro-actions { margin-top: 10px; }
+
 }
 
 @media (max-width: 360px) {
