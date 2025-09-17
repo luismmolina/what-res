@@ -1,4 +1,11 @@
-﻿/* ---------- Data configuration ---------- */
+/* ---------- Data configuration ---------- */
+const MICRO_PROOF_MESSAGES = [
+  'Maria reservo en 62 segundos ayer.',
+  'Mas de 1,200 rutas creadas este mes.',
+  '8 de cada 10 usuarios encuentran plan en menos de 90s.',
+  'Tu mesa ideal esta a 6 respuestas de distancia.'
+];
+
 const QUESTIONNAIRE = [
   {
     id: 'intencion',
@@ -366,12 +373,55 @@ document.addEventListener('DOMContentLoaded', () => {
     options: document.getElementById('options'),
     results: document.getElementById('results'),
     restart: document.getElementById('restart'),
-    progressShell: document.querySelector('.progress-shell')
+    progressShell: document.querySelector('.progress-shell'),
+    howItWorks: document.querySelector('.how-it-works'),
+    microProof: document.getElementById('micro-proof'),
+    microProofCopy: document.querySelector('.micro-proof-copy')
   };
 
   const state = {
     stepIndex: 0,
     responses: []
+  };
+
+  const microProof = {
+    timer: null,
+    index: 0,
+    show() {
+      if (ui.microProof) ui.microProof.classList.remove('hidden');
+    },
+    hide() {
+      if (ui.microProof) ui.microProof.classList.add('hidden');
+    },
+    setMessage(message) {
+      if (ui.microProofCopy) ui.microProofCopy.textContent = message;
+    },
+    start() {
+      if (!ui.microProof || !ui.microProofCopy || !MICRO_PROOF_MESSAGES.length) return;
+      this.stop();
+      this.index = 0;
+      this.setMessage(MICRO_PROOF_MESSAGES[this.index]);
+      this.show();
+      if (MICRO_PROOF_MESSAGES.length > 1) {
+        this.timer = window.setInterval(() => {
+          this.advance();
+        }, 6000);
+      }
+    },
+    advance() {
+      if (!ui.microProofCopy || MICRO_PROOF_MESSAGES.length <= 1) return;
+      this.index = (this.index + 1) % MICRO_PROOF_MESSAGES.length;
+      this.setMessage(MICRO_PROOF_MESSAGES[this.index]);
+    },
+    stop(hide = false) {
+      if (this.timer) {
+        window.clearInterval(this.timer);
+        this.timer = null;
+      }
+      if (hide) {
+        this.hide();
+      }
+    }
   };
 
   const renderers = {
@@ -394,58 +444,36 @@ document.addEventListener('DOMContentLoaded', () => {
             <strong>${option.label}</strong>
             <span>${option.helper}</span>
           </div>
-          <div class="option-chevron">›</div>
+          <div class="option-chevron">></div>
         `.trim();
         button.addEventListener('click', (e) => actions.handleAnswer(option, e.currentTarget));
         ui.options.appendChild(button);
       });
     },
 
-    results(matches, chips) {
-      const heroChips = chips.length
-        ? `<div class="chip-row">${chips.map((chip) => `<span class="chip">${chip}</span>`).join('')}</div>`
-        : '';
-
-      let html = `
-        <div class="result-hero">
-          <p class="eyebrow">Tu ruta personalizada</p>
-          <h2>Listo para salir</h2>
-          <p>Te recomendamos espacios abiertos, con la vibra que pediste y pasos claros para llegar sin estrés.</p>
-          ${heroChips}
-        </div>
-      `;
-
+    results(matches) {
       if (!matches.length) {
-        html += '<p>No encontramos coincidencias claras. Ajusta tus respuestas y vuelve a intentar.</p>';
+        ui.results.innerHTML = '<div class="empty-results">No encontramos coincidencias claras. Ajusta tus respuestas y vuelve a intentar.</div>';
       } else {
-        html += '<div class="venue-list">';
-        matches.slice(0, 3).forEach((venue, index) => {
-          const reasonTags = Array.isArray(venue.reasons) && venue.reasons.length
-            ? `<div class="reason-tags">${venue.reasons
-                .map((reason) => `<span class="reason-chip">${reason.label}</span>`)
-                .join('')}</div>`
-            : '';
-
+        const cards = matches.slice(0, 3).map((venue, index) => {
           const highlights = Array.isArray(venue.destacados) && venue.destacados.length
             ? `<ul class="highlights">${venue.destacados.map((item) => `<li>${item}</li>`).join('')}</ul>`
             : '';
-
           const cover = venue.image
             ? `<figure class="venue-media"><img src="${venue.image.src}" alt="${venue.image.alt}" loading="lazy"></figure>`
-            : '';
+            : '<div class="venue-media fallback"></div>';
 
-          html += `
+          return `
             <article class="venue-card">
               ${cover}
               <div class="venue-info">
                 <div class="venue-head">
-                  <div class="venue-rank">#${index + 1} · Match ideal</div>
+                  <div class="venue-rank">#${index + 1} - Match ideal</div>
                   <h3>${venue.nombre}</h3>
-                  <p class="venue-meta">${venue.barrio} · ${venue.horario}</p>
+                  <p class="venue-meta">${venue.barrio} - ${venue.horario}</p>
                 </div>
                 <p class="venue-desc">${venue.descripcion}</p>
                 <p class="venue-meta">${venue.precioEstimado}</p>
-                ${reasonTags}
                 ${highlights}
                 <div class="cta-group">
                   <a class="cta-primary" href="${venue.enlaces.maps}" target="_blank" rel="noopener">Abrir en Maps</a>
@@ -454,11 +482,18 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </article>
           `;
-        });
-        html += '</div>';
-      }
+        }).join('');
 
-      ui.results.innerHTML = html;
+        ui.results.innerHTML = `<div class="venue-list">${cards}</div>`;
+        const images = ui.results.querySelectorAll('.venue-media img');
+        images.forEach((img) => {
+          img.addEventListener('error', () => {
+            const media = img.closest('.venue-media');
+            if (media) media.classList.add('fallback');
+            img.remove();
+          }, { once: true });
+        });
+      }
     }
   };
 
@@ -509,13 +544,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter(Boolean)
         .sort((a, b) => b.score - a.score);
     },
-
-    topChips(totals) {
-      return Object.entries(totals)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 4)
-        .map(([tag]) => TAG_LABELS[tag] || tag);
-    }
   };
 
   const actions = {
@@ -534,10 +562,12 @@ document.addEventListener('DOMContentLoaded', () => {
       ui.restart.classList.add('hidden');
 
       ui.progressShell.classList.remove('hidden');
+      if (ui.howItWorks) ui.howItWorks.classList.add('hidden');
       ui.questionCard.classList.remove('hidden', 'leaving', 'entering');
 
       renderers.question(QUESTIONNAIRE[state.stepIndex]);
       calculations.updateProgress();
+      microProof.start();
 
       ui.questionCard.classList.add('entering');
       setTimeout(() => ui.questionCard.classList.remove('entering'), 220);
@@ -549,13 +579,14 @@ document.addEventListener('DOMContentLoaded', () => {
     handleAnswer(option, btnEl) {
       const question = QUESTIONNAIRE[state.stepIndex];
       state.responses.push({ questionId: question.id, option });
+      microProof.advance();
 
       // Selection feedback on the pressed option
       if (btnEl) {
         try {
           btnEl.classList.add('selected');
           const chev = btnEl.querySelector('.option-chevron');
-          if (chev) chev.textContent = '✓';
+          if (chev) chev.textContent = '>';
         } catch (_) {}
       }
 
@@ -585,12 +616,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ui.introScreen.classList.add('hidden');
       }
       const totals = calculations.selectionsTotals();
-      const chips = calculations.topChips(totals);
       const matches = calculations.rankedVenues(totals);
 
       ui.questionCard.classList.add('hidden');
       ui.progressShell.classList.add('hidden');
-      renderers.results(matches, chips);
+      if (ui.howItWorks) ui.howItWorks.classList.add('hidden');
+      microProof.stop(true);
+      renderers.results(matches);
       ui.results.classList.remove('hidden');
       ui.results.classList.add('entering');
       setTimeout(() => ui.results.classList.remove('entering'), 260);
@@ -600,6 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
     reset() {
       state.stepIndex = 0;
       state.responses = [];
+      microProof.stop(true);
       ui.results.classList.add('hidden');
       ui.results.classList.remove('entering');
       ui.results.innerHTML = '';
@@ -622,11 +655,14 @@ document.addEventListener('DOMContentLoaded', () => {
         ui.questionEyebrow.textContent = '';
       }
 
-      ui.questionPrompt.textContent = 'Tu cuestionario inicia cuando presiones “Comenzar cuestionario”.';
+      ui.questionPrompt.textContent = 'Tu cuestionario inicia cuando presiones Comenzar cuestionario.';
       ui.options.innerHTML = '';
 
       if (ui.introScreen) {
         ui.introScreen.classList.remove('hidden');
+      }
+      if (ui.howItWorks) {
+        ui.howItWorks.classList.remove('hidden');
       }
 
       if (ui.startButton) {
